@@ -57,4 +57,10 @@ user_input = st.text_input("You:", key="user_input")
 if st.button("Send") and user_input:
     memory = st.session_state.memory
     history = memory.load_memory_variables({})["history"]
-    response =
+    response = chain.invoke({"input": user_input, "history": history})
+    memory.save_context({"input": user_input}, {"output": response})
+
+# === Display Chat History ===
+for msg in st.session_state.memory.chat_memory.messages:
+    role = "🧑 You" if msg.type == "human" else "🤖 Bot"
+    st.markdown(f"**{role}:** {msg.content}")
