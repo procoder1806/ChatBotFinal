@@ -1,7 +1,5 @@
 streamlit
 langchain
-openai
-transformers
-huggingface_hub
-langchain-Community
-langchain-ChatOpenAI
+groq
+langchain-community
+langchain-openai
