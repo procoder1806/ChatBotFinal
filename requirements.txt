@@ -3,3 +3,5 @@ langchain
 openai
 transformers
 huggingface_hub
+langchain-Community
+langchain-ChatOpenAI
