@@ -16,7 +16,7 @@ st.title("🤖 Chatbot (Groq + LangChain + Hugging Face Spaces)")
 # === Sidebar Model Selector ===
 AVAILABLE_MODELS = {
     "LLaMA 3 (8B)": "llama3-8b-8192",
-    "Whisper (V3)": "whisper-large-v3-turbo",
+    "LLaMA 3.3 (70B)": "llama-3.3-70b-versatile",
     "Gemma (9B)": "gemma2-9b-it"
 }
 
