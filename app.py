@@ -19,20 +19,20 @@ modellist = {
 }
 
 modelname = st.sidebar.selectbox("Choose a model", list(modellist.keys()))
-selmo = modellist[modelname]
-st.sidebar.caption(f"Current model: `{selmo}`")
+sselectmodel = modellist[modelname]
+st.sidebar.caption(f"Current model: `{sselectmodel}`")
 
 if "memory" not in st.session_state:
     st.session_state.memory = ConversationBufferMemory(return_messages=True)
 if "last_model" not in st.session_state:
-    st.session_state.last_model = selmo
+    st.session_state.last_model = sselectmodel
 
-if st.session_state.last_model != selmo:
+if st.session_state.last_model != sselectmodel:
     st.session_state.memory.clear()
-    st.session_state.last_model = selmo
+    st.session_state.last_model = sselectmodel
 
 llm = ChatOpenAI(
-    model=selmo,
+    model=sselectmodel,
     temperature=0.7,
     openai_api_key=api_key,
     openai_api_base=api_base
