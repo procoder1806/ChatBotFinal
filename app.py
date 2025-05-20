@@ -12,34 +12,34 @@ api_base = os.getenv("OPENAI_API_BASE")
 st.set_page_config(page_title="ChatBotFinal", layout="centered")
 st.title("Chatbot (Multi - Model)")
 
-AVAILABLE_MODELS = {
+modellist = {
     "LLaMA 3 (8B)": "llama3-8b-8192",
     "LLaMA 3.3 (70B)": "llama-3.3-70b-versatile",
     "Gemma (9B)": "gemma2-9b-it"
 }
 
-selected_model_label = st.sidebar.selectbox("Choose a model", list(AVAILABLE_MODELS.keys()))
-selected_model = AVAILABLE_MODELS[selected_model_label]
-st.sidebar.caption(f"Current model: `{selected_model}`")
+modelname = st.sidebar.selectbox("Choose a model", list(modellist.keys()))
+selmo = modellist[modelname]
+st.sidebar.caption(f"Current model: `{selmo}`")
 
 if "memory" not in st.session_state:
     st.session_state.memory = ConversationBufferMemory(return_messages=True)
 if "last_model" not in st.session_state:
-    st.session_state.last_model = selected_model
+    st.session_state.last_model = selmo
 
-if st.session_state.last_model != selected_model:
+if st.session_state.last_model != selmo:
     st.session_state.memory.clear()
-    st.session_state.last_model = selected_model
+    st.session_state.last_model = selmo
 
 llm = ChatOpenAI(
-    model=selected_model,
+    model=selmo,
     temperature=0.7,
     openai_api_key=api_key,
     openai_api_base=api_base
 )
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful AI assistant."),
+    ("system", "You are helpful and smartest AI assistant who will go to any length for humans."),
     ("placeholder", "{history}"),
     ("human", "{input}")
 ])
